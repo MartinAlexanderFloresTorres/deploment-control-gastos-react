@@ -1,78 +1,75 @@
-import { useState, useEffect } from "react";
-import Header from "./components/Header";
-import ListadoGastos from "./components/ListadoGastos";
-import Filtros from "./components/Filtros";
-import Modal from "./components/Modal";
-import iconoNuevoGasto from "./img/nuevo-gasto.svg";
+import { useState, useEffect } from 'react'
+import Header from './components/Header'
+import ListadoGastos from './components/ListadoGastos'
+import Filtros from './components/Filtros'
+import Modal from './components/Modal'
+import iconoNuevoGasto from './img/nuevo-gasto.svg'
+import Aplicaciones from './components/Aplicaciones'
 
-const body = document.querySelector("body");
+const body = document.querySelector('body')
 
 function App() {
   const [presupuesto, setPresupuesto] = useState(
-    Number(localStorage.getItem("presupuesto-v1")) || 0
-  );
-  const [isIsValidPresupuesto, setIsValidPresupuesto] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [animar, setAnimar] = useState(false);
-  const [gastos, setGastos] = useState(
-    JSON.parse(localStorage.getItem("gastos-v1")) || []
-  );
-  const [gastoEditar, setGastoEditar] = useState({});
-  const [filtro, setFiltro] = useState("");
+    Number(localStorage.getItem('presupuesto-v1')) || 0
+  )
+  const [isIsValidPresupuesto, setIsValidPresupuesto] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [animar, setAnimar] = useState(false)
+  const [gastos, setGastos] = useState(JSON.parse(localStorage.getItem('gastos-v1')) || [])
+  const [gastoEditar, setGastoEditar] = useState({})
+  const [filtro, setFiltro] = useState('')
   const [gastosFiltados, setGastosFiltrados] = useState([])
 
-  useEffect(()=>{
+  useEffect(() => {
     if (filtro) {
-      const gastosFilter = gastos.filter((gastoState => gastoState.categoria === filtro))
+      const gastosFilter = gastos.filter((gastoState) => gastoState.categoria === filtro)
       setGastosFiltrados(gastosFilter)
     }
-  },[filtro])
+  }, [filtro])
 
   useEffect(() => {
     if (presupuesto) {
-      setIsValidPresupuesto(true);
+      setIsValidPresupuesto(true)
     }
-  },[]);
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem("gastos-v1", JSON.stringify(gastos));
-  }, [gastos]);
+    localStorage.setItem('gastos-v1', JSON.stringify(gastos))
+  }, [gastos])
 
   const abrirModal = () => {
-    setModal(true);
+    setModal(true)
     setTimeout(() => {
-      setAnimar(true);
-    }, 300);
-  };
+      setAnimar(true)
+    }, 300)
+  }
 
   const handleNuevoGasto = () => {
-    setGastoEditar({});
-    abrirModal();
-  };
+    setGastoEditar({})
+    abrirModal()
+  }
 
   //=============== useEffect de gastoEditar para Abrir modal ===============
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
-      abrirModal();
+      abrirModal()
     }
-  }, [gastoEditar]);
+  }, [gastoEditar])
 
   //=============== useEffect modal ===============
   useEffect(() => {
     if (modal) {
-      body.style.overflow = "hidden";
+      body.style.overflow = 'hidden'
     } else {
-      body.style.overflow = "auto";
+      body.style.overflow = 'auto'
     }
-  }, [modal]);
+  }, [modal])
 
   //=============== eliminar gasto ===============
   const eliminarGasto = (id) => {
-    const gastosActualizados = gastos.filter(
-      (gastoState) => gastoState.id !== id
-    );
-    setGastos(gastosActualizados);
-  };
+    const gastosActualizados = gastos.filter((gastoState) => gastoState.id !== id)
+    setGastos(gastosActualizados)
+  }
 
   return (
     <div>
@@ -94,11 +91,13 @@ function App() {
             filtro={filtro}
             gastosFiltados={gastosFiltados}
           />
-          <div className="nuevo-gasto">
-            <img onClick={handleNuevoGasto} src={iconoNuevoGasto} alt="icono" />
+          <div className='nuevo-gasto'>
+            <img onClick={handleNuevoGasto} src={iconoNuevoGasto} alt='icono' />
           </div>
         </main>
       )}
+
+      <Aplicaciones />
 
       {modal && (
         <Modal
@@ -112,7 +111,7 @@ function App() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

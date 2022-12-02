@@ -1,6 +1,6 @@
-import {useState} from "react"
-import NuevoPresupuesto from "./NuevoPresupuesto";
-import ControlPresupuesto from "./ControlPresupuesto";
+import { useState } from 'react'
+import NuevoPresupuesto from './NuevoPresupuesto'
+import ControlPresupuesto from './ControlPresupuesto'
 
 function Header(props) {
   const {
@@ -9,9 +9,9 @@ function Header(props) {
     isIsValidPresupuesto,
     setIsValidPresupuesto,
     gastos,
-    setGastos,
-  } = props;
-  const [preLs,  setPreLs] = useState(Number(localStorage.getItem("presupuesto-v1")) || 0)
+    setGastos
+  } = props
+  const [preLs, setPreLs] = useState(Number(localStorage.getItem('presupuesto-v1')) || 0)
 
   const mostrarContenido = () => {
     if (isIsValidPresupuesto || preLs) {
@@ -24,7 +24,7 @@ function Header(props) {
           setIsValidPresupuesto={setIsValidPresupuesto}
           setPreLs={setPreLs}
         />
-      );
+      )
     } else {
       return (
         <NuevoPresupuesto
@@ -32,16 +32,16 @@ function Header(props) {
           setPresupuesto={setPresupuesto}
           setIsValidPresupuesto={setIsValidPresupuesto}
         />
-      );
+      )
     }
-  };
+  }
 
   return (
     <header>
       <h1>Planificador de Gastos</h1>
       {mostrarContenido()}
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

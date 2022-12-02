@@ -3,14 +3,14 @@
   --azul: #3b82f6;
   --blanco: #ffffff;
   --gris-claro: #f5f5f5;
-  --gris: #94a3b8;
+  --gris: #001839;
   --gris-oscuro: #64748b;
   --negro: #000;
 }
 
 body {
   font-size: 1.6rem;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   background-color: var(--gris-claro);
 }
 html {
@@ -83,8 +83,8 @@ header h1 {
   margin-bottom: 2rem;
 }
 
-.formulario input[type="text"],
-.formulario input[type="number"] {
+.formulario input[type='text'],
+.formulario input[type='number'] {
   width: 100%;
   background-color: var(--gris-claro);
   border-radius: 1rem;
@@ -96,8 +96,8 @@ header h1 {
   outline: none;
 }
 
-.formulario input[type="submit"] {
-  background-color: #1048a4;
+.formulario input[type='submit'] {
+  background-color: var(--azul);
   border: none;
   padding: 15px 20px;
   text-align: center;
@@ -111,12 +111,12 @@ header h1 {
   border-radius: 8px;
 }
 @media (min-width: 768px) {
-  .formulario input[type="submit"] {
+  .formulario input[type='submit'] {
     display: block;
   }
 }
-.formulario input[type="submit"]:hover {
-  background-color: #042a67;
+.formulario input[type='submit']:hover {
+  background-color: var(--gris-oscuro);
   cursor: pointer;
 }
 
@@ -150,8 +150,8 @@ header h1 {
   margin: 0 auto;
 }
 .contenedor-presupuesto {
-  margin-top: -5rem;
-
+  transform: translateY(-5rem);
+  margin-bottom: 8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -177,10 +177,11 @@ header h1 {
     margin-bottom: 0;
   }
 }
-.formulario input[type="text"].nuevo-presupuesto,
-.formulario input[type="number"].nuevo-presupuesto {
+.formulario input[type='text'].nuevo-presupuesto,
+.formulario input[type='number'].nuevo-presupuesto {
   font-size: 2.8rem;
   text-align: center;
+  border-color: var(--blanco);
 }
 
 .contenedor-presupuesto svg {
@@ -271,6 +272,7 @@ main {
   margin-bottom: 2rem;
   width: 100%;
   cursor: pointer;
+  user-select: none;
 }
 
 .cantidad-gasto {
@@ -406,6 +408,16 @@ main {
   align-items: center;
   font-size: 2.4rem;
   text-align: right;
+}
+.applicaciones {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  padding: 20px;
 }
 @media (max-width: 700px) {
   .sombra {
